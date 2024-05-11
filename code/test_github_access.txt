@@ -3,7 +3,7 @@ to the repo with a comment stating this. This is to test
 and verify that you have git set up correctly.
 
 - Adrian Ortiz
-- [ ] Your Name
+- Xi Zeng
 - [ ] Your Name
 - [ ] Your Name
 - [ ] Your Name
