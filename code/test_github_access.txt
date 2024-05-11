@@ -4,6 +4,6 @@ and verify that you have git set up correctly.
 
 - Adrian Ortiz
 - Xi Zeng
-- [ ] Your Name
+- Magnus Urosev
 - [ ] Your Name
 - [ ] Your Name
