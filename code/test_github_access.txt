@@ -5,5 +5,5 @@ and verify that you have git set up correctly.
 - Adrian Ortiz
 - Xi Zeng
 - Magnus Urosev
-- [ ] Your Name
+- Jack Cairns
 - [ ] Your Name
