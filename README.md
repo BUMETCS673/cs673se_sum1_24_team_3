@@ -30,7 +30,7 @@ project-root/
 └── README.md
 ```
 
-
+```
 code
 “This folder contains all source code and test code.” (Completed files preferably) 
 demo
@@ -40,4 +40,4 @@ doc
 misc
 	“This folder contains any additional information about the project.”
 
-
+```
