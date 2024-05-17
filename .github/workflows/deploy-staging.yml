@@ -1,4 +1,4 @@
-# .github/workflows/deploy-staging.yaml
+# .github/workflows/deploy-staging.yml
 
 name: Deploy to Staging
 
@@ -20,7 +20,7 @@ jobs:
           node-version: 16.18
           cache: npm
       - name: Generate Lock File
-        run: npm ci
+        run: npm ci --prefix /home/runner/work/cs673se_sum1_24_team_3/cs673se_sum1_24_team_3
       - name: Type Check
         run: npm run type-check
       - name: Unit Tests
