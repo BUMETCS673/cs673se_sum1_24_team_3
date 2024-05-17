@@ -21,6 +21,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Generate Lock File
+        run: npm lock --lockfile=package-lock.json
       - name: Type Check
         run: npm run type-check
       - name: Unit Tests
