@@ -1,32 +1,31 @@
 # .github/workflows/deploy-production.yaml
 
-name: Release to Production
+name: Deploy to Production
 
 on:
   release:
     types: [published]
 
 jobs:
-  release-production:
-    name: Release to Production
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment: production
+
     steps:
-      - name: Download Artifact from Release
-        uses: actions/download-artifact@v3
-        with:
-          name: artifact-image
-          path: artifacts
-      - name: Unzip Artifact
-        run: unzip artifact-image.zip -d artifacts
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Set up AKS
-        run: |
-          az aks get-credentials --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ${{ secrets.AZURE_AKS_CLUSTER }}
-      - name: Deploy to AKS
-        run: |
-          image=$(cat artifacts/image.txt)
-          kubectl set image deployment/my-app my-app=$image --record
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Build and Push Docker image for Backend
+      uses: docker/build-push-action@v2
+      with:
+        context: ./code/backend
+        file: ./code/backend/Dockerfile
+        tags: team3rhett/backend-app:release-${{ github.sha }}
+        push: true
+
+    - name: Build and Push Docker image for Frontend
+      uses: docker/build-push-action@v2
+      with:
+        context: ./code/frontend
+        file: ./code/frontend/Dockerfile
+        tags: team3rhett/frontend-app:release-${{ github.sha }}
+        push: true
