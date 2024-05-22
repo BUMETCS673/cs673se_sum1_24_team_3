@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - develop  # Trigger on commits to the 'develop' branch
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build-and-deploy:
@@ -39,7 +40,7 @@ jobs:
     - name: Create Release Branch
       if: success()  # Only if all previous steps succeeded
       run: |
-        git config --local user.name github-actions@github
+        git config --local user.name "GitHub Actions"
         git config --local user.email "actions@github.com"
         git checkout -b release-${{ github.run_number }}
         git push origin release-${{ github.run_number }}

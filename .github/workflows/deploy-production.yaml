@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - 'release/*'  # Trigger on release branches created by staging
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   deploy-to-production:
