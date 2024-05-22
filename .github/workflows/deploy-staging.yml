@@ -1,6 +1,6 @@
 # .github/workflows/deploy-staging.yaml
 
-name: Deploy to Staging and Prepare Release
+name: Deploy to Staging
 
 on:
   push:
@@ -28,18 +28,18 @@ jobs:
         DJANGO_SETTINGS_MODULE: backend.Django.settings.staging_settings
         DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
 
-    - name: Run Deploy Script
-      run: |
-        chmod +x deploy_script.sh
-        ./deploy_script.sh
-      env:
-        DJANGO_SETTINGS_MODULE: backend.Django.settings.staging_settings
-        DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+    - name: Set up SSH for deployment
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Execute Deployment Commands via SSH
+      run: ssh -o "StrictHostKeyChecking=no" ${{GITHUB_USERNAME}} "deploy_script.sh"
 
     - name: Create Release Branch
       if: success()  # Only if all previous steps succeeded
       run: |
-        git config --local user.name "GitHub Actions"
-        git config --local user.email "actions@github.com"
+        git config --local user.name ${{GITHUB_USERNAME}}
+    #    git config --local user.email "actions@github.com"
         git checkout -b release-${{ github.run_number }}
         git push origin release-${{ github.run_number }}

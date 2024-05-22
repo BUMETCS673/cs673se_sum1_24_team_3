@@ -28,10 +28,10 @@ jobs:
         DJANGO_SETTINGS_MODULE: backend.Django.settings.production_settings
         DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
 
-    - name: Run Deploy Script
-      run: |
-        chmod +x deploy_script.sh
-        ./deploy_script.sh
-      env:
-        DJANGO_SETTINGS_MODULE: backend.Django.settings.production_settings
-        DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+    - name: Set up SSH for deployment
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Execute Deployment Commands via SSH
+      run: ssh -o "StrictHostKeyChecking=no" ${{GITHUB_USERNAME}} "deploy_script.sh"
