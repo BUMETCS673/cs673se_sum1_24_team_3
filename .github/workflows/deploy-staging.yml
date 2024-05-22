@@ -1,11 +1,11 @@
 # .github/workflows/deploy-staging.yaml
 
-name: Deploy to Staging
+name: Deploy to Staging and Prepare Release
 
 on:
   push:
     branches:
-      - main
+      - develop  # Trigger on commits to the 'develop' branch
 
 jobs:
   build-and-deploy:
@@ -14,33 +14,32 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Python 3.8
+    - name: Set up Python 3.10
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
+        python-version: '3.10'
 
     - name: Install Dependencies
-      run: |
-        pip install --upgrade pip
-        pip install -r code/backend/Django/requirements.txt
+      run: pip install -r requirements.txt
 
-    - name: Run Tests
+    - name: Run Migrations
+      run: python manage.py migrate
+      env:
+        DJANGO_SETTINGS_MODULE: backend.Django.settings.staging_settings
+        DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+
+    - name: Run Deploy Script
       run: |
-        echo "Running tests (mock command)"
-        # Here you should add the command to run your tests
+        chmod +x deploy_script.sh
+        ./deploy_script.sh
+      env:
+        DJANGO_SETTINGS_MODULE: backend.Django.settings.staging_settings
+        DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
 
     - name: Create Release Branch
-      if: success()  # Only execute if all previous steps were successful
+      if: success()  # Only if all previous steps succeeded
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.name "GitHub Actions"
+        git config --local user.email "actions@github.com"
         git checkout -b release-${{ github.run_number }}
         git push origin release-${{ github.run_number }}
-
-    - name: Build Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: ./code/backend
-        file: ./code/backend/Django/Dockerfile
-        tags: yourusername/backend:${{ github.sha }}
-        push: true

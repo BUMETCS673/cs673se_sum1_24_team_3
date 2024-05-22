@@ -5,4 +5,6 @@ gunicorn==22.0.0
 python-decouple==3.5
 sqlparse==0.5.0
 typing_extensions==4.11.0
-# any other libraries you need
+# For testing
+pytest==7.1.2
+pytest-django==4.5.2
