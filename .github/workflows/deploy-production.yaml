@@ -3,29 +3,36 @@
 name: Deploy to Production
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'release-*'
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Build and Push Docker image for Backend
+    # Similar steps as in the staging workflow but targeting production settings
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install Dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r ./backend/Django/requirements.txt
+    - name: Run Tests
+      run: |
+        python manage.py test --settings=code.backend.Django.production_settings
+      env:
+        DJANGO_SETTINGS_MODULE: code.backend.Django.production_settings
+    - name: Build Docker image
       uses: docker/build-push-action@v2
       with:
-        context: ./code/backend
-        file: ./code/backend/Dockerfile
-        tags: team3rhett/backend-app:release-${{ github.sha }}
+        context: ./backend
+        file: ./backend/Django/Dockerfile
+        tags: yourusername/backend:${{ github.sha }}
         push: true
-
-    - name: Build and Push Docker image for Frontend
-      uses: docker/build-push-action@v2
-      with:
-        context: ./code/frontend
-        file: ./code/frontend/Dockerfile
-        tags: team3rhett/frontend-app:release-${{ github.sha }}
-        push: true
+    - name: Deploy
+      run: echo "Deploy to production server"

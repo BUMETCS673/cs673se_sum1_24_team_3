@@ -12,36 +12,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
-    - name: Build and Push Docker image for Backend
-      uses: docker/build-push-action@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
       with:
-        context: ./code/backend
-        file: ./code/backend/Dockerfile
-        tags: team3rhett/backend-app:staging-${{ github.sha }}
-        push: true
+        python-version: '3.8'
 
-    - name: Build and Push Docker image for Frontend
-      uses: docker/build-push-action@v2
-      with:
-        context: ./code/frontend
-        file: ./code/frontend/Dockerfile
-        tags: team3rhett/frontend-app:staging-${{ github.sha }}
-        push: true
+    - name: Install Dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r ./backend/Django/requirements.txt
 
-  create-release:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+    - name: Run Tests
+      run: |
+        python manage.py test --settings=code.backend.Django.base_settings
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DJANGO_SETTINGS_MODULE: code.backend.Django.base_settings
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
       with:
-        tag_name: release-${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
-        draft: false
-        prerelease: false
+        context: ./backend
+        file: ./backend/Django/Dockerfile
+        tags: yourusername/backend:${{ github.sha }}
+        push: true
+
+    - name: Create Release Branch
+      if: success()  # Only execute if all previous steps were successful
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git branch release-${{ github.run_number }}
+        git checkout release-${{ github.run_number }}
+        git commit --allow-empty -m "Creating release branch from staging"
+        git push origin release-${{ github.run_number }}

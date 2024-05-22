@@ -9,8 +9,8 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /code
 
 # Install dependencies
-COPY ./backend/requirements.txt /code/
+COPY requirements.txt /code/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy the backend directory contents into the container at /code
-COPY ./backend /code/
+COPY . /code/
