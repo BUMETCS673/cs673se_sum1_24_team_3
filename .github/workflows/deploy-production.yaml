@@ -26,7 +26,7 @@ jobs:
     - name: Run Migrations
       run: python code/backend/Django/manage.py migrate
       env:
-        DJANGO_SETTINGS_MODULE: Django.settings.production
+        DJANGO_SETTINGS_MODULE: Django.settings.production_settings
         DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
 
     - name: Set up SSH for deployment
