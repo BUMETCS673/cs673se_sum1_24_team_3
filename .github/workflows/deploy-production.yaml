@@ -20,22 +20,13 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Print working directory
-      run: pwd
-
-    - name: List files in the current directory
-      run: ls -la
-
-    - name: Find requirements.txt
-      run: find . -name "requirements.txt"
-
     - name: Install Dependencies
-      run: pip install -r code/backend/requirements.txt
+      run: pip install -r code/backend/Django/requirements.txt
 
     - name: Run Migrations
-      run: python manage.py migrate
+      run: python code/backend/Django/manage.py migrate
       env:
-        DJANGO_SETTINGS_MODULE: backend.Django.settings.production_settings
+        DJANGO_SETTINGS_MODULE: Django.settings.production
         DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
 
     - name: Set up SSH for deployment
@@ -45,3 +36,4 @@ jobs:
 
     - name: Execute Deployment Commands via SSH
       run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
+
