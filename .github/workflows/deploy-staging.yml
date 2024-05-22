@@ -26,8 +26,11 @@ jobs:
     - name: List files in the current directory
       run: ls -la
 
+    - name: Find requirements.txt
+      run: find . -name "requirements.txt"
+
     - name: Install Dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r code/backend/requirements.txt
 
     - name: Run Migrations
       run: python manage.py migrate
