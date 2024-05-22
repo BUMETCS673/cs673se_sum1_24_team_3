@@ -34,12 +34,12 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Execute Deployment Commands via SSH
-      run: ssh -o "StrictHostKeyChecking=no" ${{GITHUB_USERNAME}} "deploy_script.sh"
+      run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
 
     - name: Create Release Branch
       if: success()  # Only if all previous steps succeeded
       run: |
-        git config --local user.name ${{GITHUB_USERNAME}}
-    #    git config --local user.email "actions@github.com"
+        git config --local user.name github-actions@github
+        git config --local user.email "actions@github.com"
         git checkout -b release-${{ github.run_number }}
         git push origin release-${{ github.run_number }}

@@ -34,4 +34,4 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Execute Deployment Commands via SSH
-      run: ssh -o "StrictHostKeyChecking=no" ${{GITHUB_USERNAME}} "deploy_script.sh"
+      run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
