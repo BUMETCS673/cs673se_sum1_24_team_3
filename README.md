@@ -1,9 +1,9 @@
 # Rhettoric
 
 ## About
-Rhettoric is a project focused on creating a model that scores exams using a Rasch model. The project aims to provide accurate and reliable psychometric analysis of examinee performance. The system will be useful for educators and students by offering detailed feedback and performance statistics.
+Rhettoric is a project focused on creating a survey. The project aims to provide accurate and reliable insight to a user's experience and feedback on a given course.
 ## Overview
-This is a project for the CS 673 class with Dr. Zhang. The objective is to develop a Rasch model backend to score exams, offering detailed psychometric analysis and performance statistics.
+This is a project for the CS 673 class with Dr. Zhang. The objective is to create a survey for a course learning platform where at the end of the course, a survey is generated and distributed to the users to answer and provide valuable feedback to the course creator. 
 Related Work
 Blackboard: A widely used learning management system (LMS) that offers course management, customizable open architecture, and scalable design.
 Coursera: An online learning platform that provides courses, specializations, and degrees.
@@ -13,21 +13,7 @@ This document explains the structure of the GitHub repository along with content
 
 ## Structure of this Project is as follows:
 ```
-project-root/
-├── code
-│
-├── demo
-│
-├── doc
-│   ├── SPPP.md
-│   ├── SDD.md
-│   ├── STD.md
-│   ├── meeting_minutes.md
-│   ├── progress_report.md
-│   └── ...
-├── misc
-│ 
-└── README.md
+TBD
 ```
 
 ```
