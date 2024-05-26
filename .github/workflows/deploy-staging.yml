@@ -1,5 +1,3 @@
-# .github/workflows/deploy-staging.yaml
-
 name: Deploy to Staging
 
 on:
@@ -13,36 +11,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
 
-    - name: Install Dependencies
-      run: pip install -r code/backend/Django/requirements.txt
+      - name: Install Dependencies
+        run: pip install -r code/backend/Django/requirements.txt
 
-    - name: Run Migrations
-      run: python code/backend/Django/manage.py migrate
-      env:
-        DJANGO_SETTINGS_MODULE: code.backend.Django.settings.staging_settings
-        DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+      - name: Run Migrations
+        run: python code/backend/Django/manage.py migrate
+        env:
+          DJANGO_SETTINGS_MODULE: code.backend.Django.settings.staging_settings
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
 
-    - name: Set up SSH for deployment
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH for deployment
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Execute Deployment Commands via SSH
-      run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
+      - name: Execute Deployment Commands via SSH
+        run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
 
-    - name: Create Release Branch
-      if: success()
-      run: |
-        git config --local user.name "GitHub Actions"
-        git config --local user.email "actions@github.com"
-        git checkout -b release-${{ github.run_number }}
-        git push origin release-${{ github.run_number }}
+      - name: Create Release Branch
+        if: success()
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git checkout -b release-${{ github.run_number }}
+          git push origin release-${{ github.run_number }}
 
 
