@@ -1,5 +1,3 @@
-# .github/workflows/deploy-production.yaml
-
 name: Deploy to Production
 
 on:
@@ -13,27 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
 
-    - name: Install Dependencies
-      run: pip install -r code/backend/Django/requirements.txt
+      - name: Install Dependencies
+        run: pip install -r code/backend/Django/requirements.txt
 
-    - name: Run Migrations
-      run: python code/backend/Django/manage.py migrate
-      env:
-        DJANGO_SETTINGS_MODULE: code.backend.Django.settings.production_settings
-        DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+      - name: Run Migrations
+        run: python code/backend/Django/manage.py migrate
+        env:
+          DJANGO_SETTINGS_MODULE: code.backend.Django.settings.production_settings
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
 
-    - name: Set up SSH for deployment
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH for deployment
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Execute Deployment Commands via SSH
-      run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
+      - name: Execute Deployment Commands via SSH
+        run: ssh -o "StrictHostKeyChecking=no" github-actions@github "deploy_script.sh"
 
