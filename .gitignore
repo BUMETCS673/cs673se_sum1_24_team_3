@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+/lib/*
+lib/*
+lib/
 # Distribution / packaging
 .Python
 build/
@@ -93,5 +95,6 @@ dmypy.json
 # npm packages
 node_modules/
 
-package.json
-yarn.lock
+code/local_testing_adrian_dnu/package.json
+code/local_testing_adrian_dnu/yarn.lock
+pyenv.cfg
