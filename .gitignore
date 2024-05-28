@@ -104,3 +104,10 @@ pyenv.cfg
 *.sublime-workspace
 *.sublime-project
 ../../.vscode/
+
+*/.DS_Store
+*/.vscode
+*/.vscode/
+*/.vscode/*
+myapp/migrations/.DS_Store
+myapp/migrations/.vscode
