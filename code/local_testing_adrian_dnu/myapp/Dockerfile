@@ -6,10 +6,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory inside the container
-WORKDIR /code/local_testing_adrian_dnu
+WORKDIR /code/local_testing_adrian_dnu/myapp
 
 # Copy the requirements file into the container
-COPY requirements.txt /code/local_testing_adrian_dnu/
+COPY requirements.txt /code/local_testing_adrian_dnu/myapp/requirements.txt
 
 # Install dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
