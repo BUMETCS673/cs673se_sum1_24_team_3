@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Register</title>
+    {% load static %}
 </head>
-
 <body>
     <h2>Register</h2>
-    <form id="registerForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br>
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password"><br>
+    <form id="registerForm" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit">Register</button>
     </form>
     <script src="{% static 'js/register.js' %}"></script>
 </body>
-
 </html>
