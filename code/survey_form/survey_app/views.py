@@ -14,4 +14,3 @@ class QuestionViewSet(viewsets.ModelViewSet):
 class ResponseViewSet(viewsets.ModelViewSet):
     queryset = Response.objects.all()
     serializer_class = ResponseSerializer
-
