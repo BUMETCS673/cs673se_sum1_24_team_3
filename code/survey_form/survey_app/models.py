@@ -19,3 +19,6 @@ class Question(models.Model):
 class Response(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.TextField()  # Can store both text responses or chosen options
+
+    def __str__(self):
+        return self.text

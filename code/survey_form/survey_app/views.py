@@ -1,7 +1,17 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from .models import Survey, Question, Response
-from .serializers import SurveySerializer, QuestionSerializer, ResponseSerializer
+from rest_framework import viewsets, status, generics
+from rest_framework.response import Response
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from .models import Survey, Question, Response as SurveyResponse
+from .serializers import (
+    SurveySerializer,
+    QuestionSerializer,
+    ResponseSerializer,
+    UserSerializer,
+    LoginSerializer,
+)
+from ..surveys.serializers import User  # Make sure this import path is correct
 
 class SurveyViewSet(viewsets.ModelViewSet):
     queryset = Survey.objects.all()
@@ -12,5 +22,31 @@ class QuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
 
 class ResponseViewSet(viewsets.ModelViewSet):
-    queryset = Response.objects.all()
+    queryset = SurveyResponse.objects.all()
     serializer_class = ResponseSerializer
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class LoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        username = request.data.get("username", None)
+        password = request.data.get("password", None)
+        user = authenticate(username=username, password=password)
+        if user:
+            refresh = RefreshToken.for_user(user)
+            access = refresh.access_token  # Fixed to correctly access the token
+            return Response(
+                {
+                    "refresh": str(refresh),
+                    "access": str(access),
+                }
+            )
+        else:
+            return Response(
+                {"error": "Invalid Credentials"},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
