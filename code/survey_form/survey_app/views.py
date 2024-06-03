@@ -11,28 +11,23 @@ from .serializers import (
     UserSerializer,
     LoginSerializer,
 )
-from ..surveys.serializers import User
-
+from ..surveys.serializers import User  # Make sure this import path is correct
 
 class SurveyViewSet(viewsets.ModelViewSet):
     queryset = Survey.objects.all()
     serializer_class = SurveySerializer
 
-
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
-
 
 class ResponseViewSet(viewsets.ModelViewSet):
     queryset = SurveyResponse.objects.all()
     serializer_class = ResponseSerializer
 
-
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer
@@ -43,7 +38,7 @@ class LoginView(generics.GenericAPIView):
         user = authenticate(username=username, password=password)
         if user:
             refresh = RefreshToken.for_user(user)
-            access = RefreshToken.access_token
+            access = refresh.access_token  # Fixed to correctly access the token
             return Response(
                 {
                     "refresh": str(refresh),

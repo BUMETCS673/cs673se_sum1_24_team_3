@@ -1,45 +1,24 @@
 from django.db import models
 
-
 class Survey(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
 
 class Question(models.Model):
-    QUESTION_TYPES = [
-        ('text', 'Text'),
-        ('multiple_choice', 'Multiple Choice'),
-    ]
-
-    type = models.CharField(max_length=50, choices=QUESTION_TYPES)
-    text = models.CharField(max_length=255)
     survey = models.ForeignKey(Survey, related_name='questions', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.text
-
-
-class MultipleChoiceOption(models.Model):
-    question = models.ForeignKey(Question, related_name='mc_options', on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
-    correct = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    choice_type = models.CharField(max_length=50)  # For example 'text', 'single_choice', 'multiple_choice'
 
     def __str__(self):
         return self.text
-
 
 class Response(models.Model):
-    question = models.ForeignKey(Question, related_name='responses', on_delete=models.CASCADE)
-    text = models.TextField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    text = models.TextField()  # Can store both text responses or chosen options
 
     def __str__(self):
         return self.text
