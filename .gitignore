@@ -94,20 +94,3 @@ dmypy.json
 
 # npm packages
 node_modules/
-
-code/local_testing_adrian_dnu/package.json
-code/local_testing_adrian_dnu/yarn.lock
-pyenv.cfg
-
-.idea/
-.vscode/
-*.sublime-workspace
-*.sublime-project
-../../.vscode/
-
-*/.DS_Store
-*/.vscode
-*/.vscode/
-*/.vscode/*
-myapp/migrations/.DS_Store
-myapp/migrations/.vscode
