@@ -23,6 +23,19 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class SurveyDetailSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Survey
+        depth = 1
+        fields = (
+            'title',
+            'description',
+            'questions'
+        )
+
+
 class ResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Response

@@ -13,7 +13,71 @@ This document explains the structure of the GitHub repository along with content
 
 ## Structure of this Project is as follows:
 ```
-TBD
+.
+├── code
+│   ├── backend
+│   │   ├── deploy_script.sh
+│   │   ├── Django
+│   │   ├── Dockerfile
+│   │   ├── __init__.py
+│   │   └── requirements.txt
+│   ├── frontend
+│   │   └── Dockerfile
+│   ├── __init__.py
+│   ├── nginx
+│   │   └── nginx.conf
+│   ├── Readme.md
+│   ├── survey_form
+│   │   ├── db.sqlite3
+│   │   ├── Dockerfile
+│   │   ├── manage.py
+│   │   ├── requirements.txt
+│   │   ├── survey_app
+│   │   ├── survey_form_backend
+│   │   ├── survey_frontend
+│   │   ├── surveys
+│   │   └── venv
+│   └── test_github_access.txt
+├── demo
+│   ├── CS673_presentation0_team3
+│   └── Readme.md
+├── doc
+│   ├── CS673_MeetingMinutes_team3.docx
+│   ├── CS673_presentation0_team3.pptx
+│   ├── CS673_ProgressReport_team3.xlsx
+│   ├── CS673_SDD_team3.docx
+│   ├── CS673_SPPP_RiskManagement.xlsx
+│   ├── CS673_SPPP_team3.docx
+│   ├── CS673_STD_team3.docx
+│   ├── ProjectDescription.docx
+│   ├── pull_request_template.md
+│   └── Readme.md
+├── misc
+│   └── Readme.md
+├── README.md
+├── team.md
+└── venv
+    ├── bin
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── Activate.ps1
+    │   ├── django-admin
+    │   ├── pip
+    │   ├── pip3
+    │   ├── pip3.10
+    │   ├── python -> /home/murosev/anaconda3/bin/python
+    │   ├── python3 -> python
+    │   ├── python3.10 -> python
+    │   └── sqlformat
+    ├── include
+    ├── lib
+    │   └── python3.10
+    ├── lib64 -> lib
+    └── pyvenv.cfg
+
+21 directories, 41 files
+
 ```
 
 ```
