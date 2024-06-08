@@ -5,7 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
-
+/lib/*
+lib/*
+lib/
 # Distribution / packaging
 .Python
 build/
@@ -92,7 +94,3 @@ dmypy.json
 
 # npm packages
 node_modules/
-
-package.json
-yarn.lock
-.vscode/
