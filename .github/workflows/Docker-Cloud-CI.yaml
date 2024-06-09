@@ -24,9 +24,6 @@ jobs:
             echo "DOCKER_ENDPOINT=team3rhett/my-app-prod" >> $GITHUB_ENV
           fi
       
-      - name: Print environment variables
-        run: printenv
-      
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
