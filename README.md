@@ -15,69 +15,124 @@ This document explains the structure of the GitHub repository along with content
 ```
 .
 ├── code
-│   ├── backend
-│   │   ├── deploy_script.sh
-│   │   ├── Django
-│   │   ├── Dockerfile
-│   │   ├── __init__.py
-│   │   └── requirements.txt
-│   ├── frontend
-│   │   └── Dockerfile
-│   ├── __init__.py
-│   ├── nginx
-│   │   └── nginx.conf
-│   ├── Readme.md
-│   ├── survey_form
-│   │   ├── db.sqlite3
-│   │   ├── Dockerfile
-│   │   ├── manage.py
-│   │   ├── requirements.txt
-│   │   ├── survey_app
-│   │   ├── survey_form_backend
-│   │   ├── survey_frontend
-│   │   ├── surveys
-│   │   └── venv
-│   └── test_github_access.txt
+│   ├── local_testing_adrian_dnu
+│   │   ├── myapp
+│   ├──  ├── migrations
+│   │     └── .DS_Store
+│   │     └── 0001_initial.py
+│   │     └── __init__.py
+│   ├──  ├── static/js
+│   │     └── login.js
+│   │     └── register.js
+│   ├──  ├── templates
+│   │     └── home.html
+│   │     └── login.html
+│   │     └── register.html
+│   ├──  ├── __init__.py
+│   ├──  ├── admin.py
+│   ├──  ├── apps.py
+│   ├──  ├── forms.py
+│   ├──  ├── models.py
+│   ├──  ├── tests.py
+│   ├──  ├── urls.py
+│   ├──  ├── views.py
+│   │   ├── myproject
+│   │     └── __init.py__
+│   │     └── settings.py
+│   │     └── urls.py
+│   │     └── wsgi.py
+│   │   ├── db.sqlite3
+│   │   ├── docker-compose.yml
+│   │   ├── Dockerfile
+│   │   ├── manage.py
+│   │   ├── requirements.txt
+│   │   ├── Testing_Instructions_Local.txt
+│   ├── survey_form
+│   │   ├── survey_app
+│   ├──  ├── migrations
+│   │     └── 0001_initial.py
+│   │     └── __init__.py
+│   ├──  ├── __init__.py
+│   ├──  ├── admin.py
+│   ├──  ├── apps.py
+│   ├──  ├── models.py
+│   ├──  ├── runtests.py
+│   ├──  ├── serializers.py
+│   ├──  ├── tests.py
+│   ├──  ├── urls.py
+│   ├──  ├── views.py
+│   │   ├── survey_form_backend
+│   ├──  ├── backend
+│   ├──   ├── Django
+│   ├──    ├── Settings
+│   ├──     ├── nginx
+│   │        └── nginx.conf
+│   ├──     ├── __init__.py
+│   ├──     ├── base_settings.py
+│   ├──     ├── production_settings.py
+│   ├──     ├── staging_settings.py
+│   ├──     ├── test_settings.py
+│   ├──    ├── __init__.py
+│   │      └── manage.py
+│   │      └── __init__.py
+│   │     └── Dockerfile
+│   │     └── __init__.py
+│   │     └── requirements.txt
+│   ├──  ├── __init__.py
+│   ├──  ├── asgi.py
+│   ├──  ├── settings.py
+│   ├──  ├── urls
+│   ├──  ├── wsgi.py
+│   │   ├── survey_frontend
+│   │   ├── surveys
+│   ├──  ├── migrations
+│   │     └── __init__.py
+│   ├──  ├── __init__.py
+│   ├──  ├── admin.py
+│   ├──  ├── apps.py
+│   ├──  ├── models.py
+│   ├──  ├── serializers.py
+│   ├──  ├── tests.py
+│   │   ├── .gitignore
+│   │   ├── Dockerfile
+│   │   ├── __init__.py
+│   │   ├── manage.py
+│   │   ├── requirements.txt
+│   ├── Readme.md
+│   ├── __init__.py
+│   ├── test_github_access.txt
 ├── demo
-│   ├── CS673_presentation0_team3
-│   └── Readme.md
+│   ├── CS673_presentation0_team3
+│   └── Readme.md
 ├── doc
-│   ├── CS673_MeetingMinutes_team3.docx
-│   ├── CS673_presentation0_team3.pptx
-│   ├── CS673_ProgressReport_team3.xlsx
-│   ├── CS673_SDD_team3.docx
-│   ├── CS673_SPPP_RiskManagement.xlsx
-│   ├── CS673_SPPP_team3.docx
-│   ├── CS673_STD_team3.docx
-│   ├── ProjectDescription.docx
-│   ├── pull_request_template.md
-│   └── Readme.md
+│   ├── CS673_MeetingMinutes_team3.docx
+│   ├── CS673_ProgressReport_team3.xlsx
+│   ├── CS673_SDD_team3.docx
+│   ├── CS673_SPPP_RiskManagement.xlsx
+│   ├── CS673_SPPP_team3.docx
+│   ├── CS673_STD_team3.docx
+│   ├── CS673_presentation0_team3.pptx
+│   ├── ERD.png
+│   ├── Readme.md
+│   ├── exam.drawio
+│   ├── pull_request_template.md
+├── Iteration
+│   ├──  ├── iteration1
+│   │       └── CS673_iteration1demo_team3 (video)
+│   │       └── CS673_presentation1_teamX
+│   │       └── readme.md
+│   ├──  ├── iteration2
+│   │       └── CS673_iteration2demo_team3_video
+│   │       └── CS673_presentation2_team3
+│   │       └── readme.md
 ├── misc
-│   └── Readme.md
+│   └── Readme.md
+├── .gitignore
+├── __init__.py
 ├── README.md
 ├── team.md
-└── venv
-    ├── bin
-    │   ├── activate
-    │   ├── activate.csh
-    │   ├── activate.fish
-    │   ├── Activate.ps1
-    │   ├── django-admin
-    │   ├── pip
-    │   ├── pip3
-    │   ├── pip3.10
-    │   ├── python -> /home/murosev/anaconda3/bin/python
-    │   ├── python3 -> python
-    │   ├── python3.10 -> python
-    │   └── sqlformat
-    ├── include
-    ├── lib
-    │   └── python3.10
-    ├── lib64 -> lib
-    └── pyvenv.cfg
 
-21 directories, 41 files
-
+25 directories, 93 files
 ```
 
 ```

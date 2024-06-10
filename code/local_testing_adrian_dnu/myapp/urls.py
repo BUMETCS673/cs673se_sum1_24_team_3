@@ -1,8 +1,10 @@
+# code/local_testing_adrian_dnu/myapp/urls.py
+
 from django.urls import path
-from . import views
+from .views import register_view, login_view, home_view
 
 urlpatterns = [
-    path('login/', views.login_view, name='login'),
-    path('register/', views.register_view, name='register'),
-    # Add more paths as needed
+    path('register/', register_view, name='register'),
+    path('login/', login_view, name='login'),
+    path('', home_view, name='home'),  # Home URL
 ]

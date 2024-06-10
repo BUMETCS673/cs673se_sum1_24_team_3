@@ -1,29 +1,29 @@
 document.getElementById('registerForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirm_password = document.getElementById('confirm_password').value;
+    const formData = new FormData(this);
+    const data = {
+        username: formData.get('username'),
+        email: formData.get('email'),
+        password1: formData.get('password1'),
+        password2: formData.get('password2')
+    };
 
-    fetch('/myapp/register/', {  // This URL matches the pattern defined in myapp/urls.py
+    fetch('/myapp/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken')
         },
-        body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-            confirm_password: confirm_password
-        })
-    }).then(response => {
-        if (response.ok) {
-            window.location.href = '/';
-        } else {
-            // Handle error
-        }
-    });
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              window.location.href = '/myapp/login/';
+          } else {
+              // Handle error
+              console.error(data.errors);
+          }
+      });
 });
 
 function getCookie(name) {
