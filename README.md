@@ -106,23 +106,25 @@ This document explains the structure of the GitHub repository along with content
 │   └── Readme.md
 ├── doc
 │   ├── CS673_MeetingMinutes_team3.docx
+│   ├── CS673_presentation0_team3.pptx
 │   ├── CS673_ProgressReport_team3.xlsx
 │   ├── CS673_SDD_team3.docx
 │   ├── CS673_SPPP_RiskManagement.xlsx
 │   ├── CS673_SPPP_team3.docx
 │   ├── CS673_STD_team3.docx
-│   ├── CS673_presentation0_team3.pptx
-│   ├── ERD.png
-│   ├── Readme.md
+│   ├── DB_old.png
+│   ├── DB_updated.png
 │   ├── exam.drawio
-│   ├── pull_request_template.md
+│   ├── meeting_minutes
+│   ├── ProjectDescription.docx
+│   ├── Readme.md
 ├── Iteration
 │   ├──  ├── iteration1
 │   │       └── CS673_iteration1demo_team3 (video)
 │   │       └── CS673_presentation1_teamX
 │   │       └── readme.md
 │   ├──  ├── iteration2
-│   │       └── CS673_iteration2demo_team3_video
+│   │       └── CS673_iteration2demo_team3_video //TODO
 │   │       └── CS673_presentation2_team3
 │   │       └── readme.md
 ├── misc
@@ -132,7 +134,7 @@ This document explains the structure of the GitHub repository along with content
 ├── README.md
 ├── team.md
 
-25 directories, 93 files
+
 ```
 
 ```
