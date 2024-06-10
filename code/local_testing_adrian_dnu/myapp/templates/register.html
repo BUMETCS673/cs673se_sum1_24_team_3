@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Register</title>
-    {% load static %}
 </head>
 <body>
     <h2>Register</h2>
-    <form id="registerForm" method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Register</button>
     </form>
-    <script src="{% static 'js/register.js' %}"></script>
 </body>
 </html>

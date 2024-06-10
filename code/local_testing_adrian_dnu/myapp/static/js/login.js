@@ -1,25 +1,27 @@
 document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const formData = new FormData(this);
+    const data = {
+        username: formData.get('username'),
+        password: formData.get('password')
+    };
 
-    fetch('/myapp/login/', {  // This URL matches the pattern defined in myapp/urls.py
+    fetch('/myapp/login/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': getCookie('csrftoken')
         },
-        body: JSON.stringify({
-            username: username,
-            password: password
-        })
-    }).then(response => {
-        if (response.ok) {
-            window.location.href = '/';
-        } else {
-            // Handle error
-        }
-    });
+        body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              window.location.href = '/';
+          } else {
+              // Handle error
+              console.error(data.errors);
+          }
+      });
 });
 
 function getCookie(name) {
