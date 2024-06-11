@@ -8,4 +8,4 @@ router.register(r"surveys", SurveyViewSet)
 router.register(r"questions", QuestionViewSet)
 router.register(r"responses", ResponseViewSet)
 
-urlpatterns = []
+urlpatterns = router.urls
