@@ -1,9 +1,0 @@
-Please add your name to this list and commit it
-to the repo with a comment stating this. This is to test
-and verify that you have git set up correctly.
-
-- Adrian Ortiz
-- Xi Zeng
-- Magnus Urosev
-- Jack Cairns
-- [ ] Your Name
