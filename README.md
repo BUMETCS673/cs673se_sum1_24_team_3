@@ -124,8 +124,8 @@ This document explains the structure of the GitHub repository along with content
 │   │       └── CS673_presentation1_teamX
 │   │       └── readme.md
 │   ├──  ├── iteration2
-│   │       └── CS673_iteration2demo_team3_video //TODO
-│   │       └── CS673_presentation2_team3
+│   │       └── Team3_Rhetoric_Iteration2_Presentation.mp4
+│   │       └── CS673_presentation2_team3.pptx
 │   │       └── readme.md
 ├── misc
 │   └── Readme.md
