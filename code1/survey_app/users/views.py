@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from .forms import CustomUserCreationForm, LoginForm
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import generics
 
 def register_view(request):
     if request.method == 'POST':
