@@ -24,7 +24,9 @@ Windows
 
 To run in Docker
 
-Run `python manage.py`
+Run `docker-compose up`
+
+Browse to https://127.0.0.1:8000
 
 ## Code Structure
 ```
