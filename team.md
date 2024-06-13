@@ -19,7 +19,7 @@ Hi everyone, my name is Jianing and I'm enrolled in BU's online MSCS program. I 
 Hey everyone, my name is Adrian and I am a DevOps/SRE
 however I am trying to become more fluent in coding and understand
 many CS concepts which is why I am going for my Masters in Software Development. 
-When not working I enjoy nature and the outdoors and love goimg on hikes. 
+When not working I enjoy nature and the outdoors and love going on hikes. 
 I am also a proud Dad of a beautiful 2 year old daughter and I am hoping to get my Masters and find 
 a great paying job so I can better support her and my family. 
 
