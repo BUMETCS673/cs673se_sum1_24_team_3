@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class Survey(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField(default='type the survey description here')
     
     def __str__(self):
@@ -10,7 +10,7 @@ class Survey(models.Model):
     
 class Question(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
-    text = models.CharField(max_length=200)
+    text = models.CharField(max_length=255)
 
     def __str__(self):
         return self.text
