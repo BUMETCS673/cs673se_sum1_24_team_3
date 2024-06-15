@@ -1,0 +1,25 @@
+<!-- code/test/myapp/templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+  <h2>Available Surveys</h2>
+  <ul>
+    {% for survey in available_surveys %}
+      <li><a href="{% url 'take_survey' survey.id %}">{{ survey.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Surveys You've Taken</h2>
+  <ul>
+    {% for survey in taken_surveys %}
+    <li><a href="{% url 'view_survey' survey.id %}">{{ survey.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <form method="get" action="{% url 'home' %}">
+    <button type="submit">Go to Home</button>
+  </form>
+</body>
+</html>

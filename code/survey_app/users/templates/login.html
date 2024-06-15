@@ -10,5 +10,8 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+    <form method="get" action="{% url 'home' %}">
+        <button type="submit">Go to Home</button>
+      </form>
 </body>
 </html>

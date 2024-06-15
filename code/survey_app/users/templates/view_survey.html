@@ -1,0 +1,29 @@
+<!-- code/test/myapp/templates/view_survey.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ survey.title }}</title>
+</head>
+<body>
+  <h2>{{ survey.title }}</h2>
+  <ul>
+    {% for question in questions %}
+      <li>Question: {{ question.text }}</li>
+      <li>
+        Answer: 
+        {% for response in responses %}
+          {% if response.survey_id == question.survey_id %}
+            {{ response.get_answer_display }}
+          {% endif %}
+        {% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+  <form method="get" action="{% url 'dashboard' %}">
+    <button type="submit">Go to Dashboard</button>
+  </form>
+  <form method="get" action="{% url 'home' %}">
+    <button type="submit">Go to Home</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Take Survey</title>
+</head>
+<body>
+  <h2>{{ survey.title }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <ul>
+    {% for question, form in question_formset %}
+      <li>
+        <p>{{ question.text }}</p>
+        {{ form.answer }}
+      </li>
+    {% endfor %}
+    </ul>
+    <button type="submit">Submit</button>
+    <form method="get" action="{% url 'dashboard' %}">
+      <button type="submit">Go to Dashboard</button>
+    </form>
+    <form method="get" action="{% url 'home' %}">
+      <button type="submit">Go to Home</button>
+    </form>
+  </form>
+</body>
+</html>
