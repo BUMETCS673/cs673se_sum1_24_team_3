@@ -23,4 +23,5 @@ urlpatterns = [
     path("questions/", include("surveys.urls")),
     path("responses/", include("surveys.urls")),
     path("", include("users.urls")),
+    path('api/', include('surveys.urls')),
 ]
