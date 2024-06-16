@@ -7,16 +7,9 @@
 <body>
   <h2>{{ survey.title }}</h2>
   <ul>
-    {% for question in questions %}
-      <li>Question: {{ question.text }}</li>
-      <li>
-        Answer: 
-        {% for response in responses %}
-          {% if response.survey_id == question.survey_id %}
-            {{ response.get_answer_display }}
-          {% endif %}
-        {% endfor %}
-      </li>
+    {% for qr in questions_and_responses %}
+      <li>Question: {{ qr.question.text }}</li>
+      <li>Answer: {{ qr.answer }}</li>
     {% endfor %}
   </ul>
   <form method="get" action="{% url 'dashboard' %}">

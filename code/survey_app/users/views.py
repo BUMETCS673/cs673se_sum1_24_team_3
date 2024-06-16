@@ -80,4 +80,6 @@ def view_survey(request, survey_id):
     survey = get_object_or_404(Survey, id=survey_id)
     questions = Question.objects.filter(survey=survey)
     responses = Response.objects.filter(user=request.user, survey=survey)
-    return render(request, 'view_survey.html', {'survey': survey, 'questions': questions, 'responses': responses})
+    response_dict = {response.question.id: response.get_answer_display() for response in responses}
+    questions_and_responses = [{'question': question, 'answer': response_dict.get(question.id, "No answer")} for question in questions]
+    return render(request, 'view_survey.html', {'survey': survey, 'questions_and_responses': questions_and_responses})
