@@ -1,0 +1,22 @@
+<!-- code/test/myapp/templates/view_survey.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ survey.title }}</title>
+</head>
+<body>
+  <h2>{{ survey.title }}</h2>
+  <ul>
+    {% for qr in questions_and_responses %}
+      <li>Question: {{ qr.question.text }}</li>
+      <li>Answer: {{ qr.answer }}</li>
+    {% endfor %}
+  </ul>
+  <form method="get" action="{% url 'dashboard' %}">
+    <button type="submit">Go to Dashboard</button>
+  </form>
+  <form method="get" action="{% url 'home' %}">
+    <button type="submit">Go to Home</button>
+  </form>
+</body>
+</html>
