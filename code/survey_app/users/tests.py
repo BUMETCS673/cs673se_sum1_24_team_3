@@ -7,6 +7,7 @@ class SurveyTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='12345')
+        self.staff_user = get_user_model().objects.create_user(email='staff@example.com', password='12345', is_staff=True)
         self.survey = Survey.objects.create(title='Test Survey', description='Test Survey Description')
         self.question1 = Question.objects.create(survey=self.survey, text='Question 1')
         self.question2 = Question.objects.create(survey=self.survey, text='Question 2')
@@ -52,3 +53,8 @@ class SurveyTests(TestCase):
         self.assertContains(response2, 'Question 2')
         self.assertContains(response2, 'Answer: I')
         self.assertContains(response2, 'Answer: II')
+
+    def test_staff_user_cannot_take_survey(self):
+        self.client.login(email='staff@example.com', password='12345')
+        response = self.client.get(reverse('take_survey', args=[self.survey.id]))
+        self.assertEqual(response.status_code, 403)

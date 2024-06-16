@@ -17,12 +17,12 @@
     {% endfor %}
     </ul>
     <button type="submit">Submit</button>
-    <form method="get" action="{% url 'dashboard' %}">
-      <button type="submit">Go to Dashboard</button>
-    </form>
-    <form method="get" action="{% url 'home' %}">
-      <button type="submit">Go to Home</button>
-    </form>
+  </form>
+  <form method="get" action="{% url 'dashboard' %}">
+    <button type="submit">Go to Dashboard</button>
+  </form>
+  <form method="get" action="{% url 'home' %}">
+    <button type="submit">Go to Home</button>
   </form>
 </body>
 </html>

@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from surveys.models import Survey, Response, Question
 from .forms import CustomUserCreationForm, LoginForm, ResponseFormSet, modelformset_factory
 from django import forms
+from django.http import HttpResponseForbidden
 
 def register_view(request):
     if request.method == 'POST':
@@ -51,6 +52,9 @@ def take_survey(request, survey_id):
     survey = get_object_or_404(Survey, id=survey_id)
     questions = Question.objects.filter(survey=survey)
     ResponseFormSet = modelformset_factory(Response, fields=('answer',), extra=len(questions), widgets={'answer': forms.RadioSelect})
+
+    if Response.objects.filter(user=request.user, survey=survey).exists():
+        return HttpResponseForbidden("You have already taken this survey.")
 
     if request.method == 'POST':
         formset = ResponseFormSet(request.POST)
