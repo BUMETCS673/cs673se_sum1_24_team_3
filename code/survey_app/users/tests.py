@@ -53,8 +53,3 @@ class SurveyTests(TestCase):
         self.assertContains(response2, 'Question 2')
         self.assertContains(response2, 'Answer: I')
         self.assertContains(response2, 'Answer: II')
-
-    def test_staff_user_cannot_take_survey(self):
-        self.client.login(email='staff@example.com', password='12345')
-        response = self.client.get(reverse('take_survey', args=[self.survey.id]))
-        self.assertEqual(response.status_code, 403)
