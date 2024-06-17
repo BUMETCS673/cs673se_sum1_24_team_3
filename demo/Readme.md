@@ -1,1 +1,1 @@
-This folder contains all demo videos
+This folder contains the final presentation for Iteration3
