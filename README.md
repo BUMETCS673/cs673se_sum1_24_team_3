@@ -62,6 +62,7 @@ This document explains the structure of the GitHub repository along with content
 ```
 
 - **code** - contains all code for the project.
+- **doc** - contains all documentation.
 - **demo** - contains a link to the Zoom recording and PowerPoint for Iteration 3, the final presentation.
 - **iteration** - contains videos and presentations from previous Iterations 0 - 2.
 
