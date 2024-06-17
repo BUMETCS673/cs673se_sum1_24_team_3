@@ -41,7 +41,6 @@ This document explains the structure of the GitHub repository along with content
 │   ├── ProjectDescription.docx
 │   ├── pull_request_template.md
 │   └── Readme.md
-├── __init__.py
 ├── iteration
 │   ├── iteration0
 │   │   ├── CS673_presentation0_team3
