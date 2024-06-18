@@ -9,7 +9,6 @@ Blackboard: A widely used learning management system (LMS) that offers course ma
 Coursera: An online learning platform that provides courses, specializations, and degrees.
 Udemy: An online learning and teaching marketplace.
 
-This document explains the structure of the GitHub repository along with contents of files. This will mirror the Github repository and can be used here as a sort of “Staging” environment until we are ready to move the “Non-Code Related” files to Github. CODE should still be stored in Github and worked on in realtime there not here. Google Drive documents will be uploaded to GitHub at the end of every iteration or after major changes. 
 
 ## Structure of this Project is as follows:
 ```
